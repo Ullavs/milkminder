@@ -18,6 +18,7 @@ model User {
   accounts      Account[]
   Authenticator Authenticator[]
   sessions      Session[]
+  feedings      Feeding[]
 }
 
 model Account {
@@ -70,4 +71,41 @@ model Authenticator {
   user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+}
+
+enum FeedingSide {
+  LEFT
+  RIGHT
+}
+
+enum FeedingTag {
+  GOOD
+  MEDIUM
+  BAD
+  CLUSTER
+  SLEEPY
+}
+
+model Feeding {
+  id              String        @id @default(cuid())
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  side            FeedingSide
+  startedAt       DateTime
+  endedAt         DateTime
+  durationSeconds Int
+  notes           String?
+  tags            FeedingTags[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model FeedingTags {
+  id        String      @id @default(cuid())
+  feeding   Feeding     @relation(fields: [feedingId], references: [id], onDelete: Cascade)
+  feedingId String
+  tag       FeedingTag
 }
