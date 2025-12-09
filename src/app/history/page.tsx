@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FeedingHistory } from "@/components/FeedingHistory";
+import { FeedingStatistics } from "@/components/FeedingStatistics";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -60,6 +61,13 @@ export default function HistoryPage() {
 
       {/* Main Content */}
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        {/* Statistics */}
+        <div className="mb-8">
+          <h2 className="mb-3 text-lg font-semibold">Statistics</h2>
+          <FeedingStatistics />
+        </div>
+
+        {/* All Sessions */}
         <Card>
           <CardHeader>
             <CardTitle>All Sessions</CardTitle>

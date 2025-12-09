@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { FeedingSession } from "@/components/FeedingSession";
 import { FeedingHistory } from "@/components/FeedingHistory";
+import { QuickStats } from "@/components/QuickStats";
 import Link from "next/link";
 import { LogOut, History } from "lucide-react";
 import { useState } from "react";
@@ -82,6 +83,12 @@ export default function Home() {
       {/* Main Content */}
       <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="space-y-8">
+          {/* Quick Stats */}
+          <div>
+            <h2 className="mb-3 text-lg font-semibold">Quick Stats</h2>
+            <QuickStats key={refreshKey} />
+          </div>
+
           {/* Start New Session */}
           <Card>
             <CardHeader>
